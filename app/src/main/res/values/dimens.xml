@@ -12,4 +12,8 @@
     <dimen name="cardRadius">2dp</dimen>
     <dimen name="cardElevation">4dp</dimen>
     <dimen name="recyclePaddingTop">10dp</dimen>
+    <dimen name="twitCardHeight">100dp</dimen>
+    <dimen name="twitCardAvatarWidth">100dp</dimen>
+    <dimen name="twitTextSize">12dp</dimen>
+    <dimen name="twitAuthorSize">15dp</dimen>
 </resources>

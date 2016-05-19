@@ -1,6 +1,7 @@
 package com.infi.overwatch.overwatchandroid.Activity;
 
 import android.annotation.SuppressLint;
+import android.app.Application;
 import android.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBar;
@@ -11,21 +12,30 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
+import com.crashlytics.android.Crashlytics;
 import com.infi.overwatch.overwatchandroid.Fragment.NewsFragment;
 import com.infi.overwatch.overwatchandroid.Fragment.PhotoFragment;
+import com.infi.overwatch.overwatchandroid.Fragment.TwitFragment;
 import com.infi.overwatch.overwatchandroid.Fragment.VideoFragment;
 import com.infi.overwatch.overwatchandroid.R;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabClickListener;
+import com.twitter.sdk.android.Twitter;
+import com.twitter.sdk.android.core.TwitterAuthConfig;
+import io.fabric.sdk.android.Fabric;
 
 public class FullscreenActivity extends AppCompatActivity {
+
+
     private BottomBar bottomBar;
     private FragmentManager fragmentManager;
     private LinearLayout linearLayout;
+    private com.infi.overwatch.overwatchandroid.Application.Application application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        application = new com.infi.overwatch.overwatchandroid.Application.Application();
 
         setContentView(R.layout.activity_fullscreen);
 
@@ -49,6 +59,11 @@ public class FullscreenActivity extends AppCompatActivity {
                     VideoFragment videoFragment = VideoFragment.newInstance();
                     fragmentManager = getSupportFragmentManager();
                     fragmentManager.beginTransaction().add(R.id.rootLayout, videoFragment, VideoFragment.TAG).commit();
+                }else if(menuItemId == R.id.twit){
+                    _hideOtherFragment();
+                    TwitFragment twitFragment = TwitFragment.newInstance();
+                    fragmentManager = getSupportFragmentManager();
+                    fragmentManager.beginTransaction().add(R.id.rootLayout, twitFragment, TwitFragment.TAG).commit();
                 }
             }
 
@@ -60,6 +75,8 @@ public class FullscreenActivity extends AppCompatActivity {
                     _checkFragment(PhotoFragment.class);
                 }else if(menuItemId == R.id.video){
                     _checkFragment(VideoFragment.class);
+                }else if(menuItemId == R.id.twit){
+                    _checkFragment(TwitFragment.class);
                 }
             }
         });

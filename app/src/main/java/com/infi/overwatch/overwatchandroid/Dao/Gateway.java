@@ -1,6 +1,7 @@
 package com.infi.overwatch.overwatchandroid.Dao;
 
 import com.infi.overwatch.overwatchandroid.model.Video.Videos;
+import com.infi.overwatch.overwatchandroid.model.WebContent.WebContent;
 import com.infi.overwatch.overwatchandroid.model.heros.Heros;
 import com.infi.overwatch.overwatchandroid.model.table.Table;
 
@@ -22,4 +23,7 @@ public interface Gateway {
 
     @GET("streams?game=overwatch")
     Call<Videos> getVideos();
+
+    @GET("content")
+    Call<List<WebContent>> getWebContent(@Header("link") String link,@Header("id") String id);
 }

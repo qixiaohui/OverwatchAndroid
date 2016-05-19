@@ -5,4 +5,5 @@
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="toolbar_back">BackButton</string>
     <string name="toolbar_share">ShareButton</string>
+    <string name="originla_link">Visit Website</string>
 </resources>

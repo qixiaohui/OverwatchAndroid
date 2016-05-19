@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:background="@android:color/white"
     tools:context=".activity.ContentActivity">
     android:layout_height="match_parent">
     <android.support.design.widget.AppBarLayout
@@ -18,6 +19,52 @@
             app:popupTheme="@style/AppTheme.PopupOverlay"
             android:background="?attr/colorPrimary" />
     </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:id="@+id/scraperView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:paddingTop="@dimen/toolbar_margin"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
+            android:background="@color/white"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/title"
+                android:textColor="@color/titleBlk"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:paddingTop="10dp"
+                android:paddingLeft="10dp"
+                android:paddingRight="10dp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/date"
+                android:paddingRight="10dp"
+                android:textAlignment="textEnd"
+                android:textSize="12sp"
+                android:textColor="@color/titleBlk"
+                android:textStyle="bold" />
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/webView" />
+
+            <Button
+                android:id="@+id/visitWebsite"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/titleBlk"
+                android:text="@string/originla_link"
+                android:textAlignment="center" />
+        </LinearLayout>
+    </ScrollView>
     <WebView
         android:paddingTop="@dimen/toolbar_margin"
         android:visibility="gone"
