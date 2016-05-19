@@ -1,0 +1,22 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/news"
+        android:icon="@drawable/ic_newspaper"
+        android:title="News" />
+    <item
+        android:id="@+id/twit"
+        android:icon="@drawable/ic_twitter"
+        android:title="Twits" />
+    <item
+        android:id="@+id/video"
+        android:icon="@drawable/ic_twitch"
+        android:title="Video" />
+    <item
+        android:id="@+id/photo"
+        android:icon="@drawable/ic_picture"
+        android:title="Photo" />
+    <item
+        android:id="@+id/donate"
+        android:icon="@drawable/ic_support"
+        android:title="Donation" />
+</menu>

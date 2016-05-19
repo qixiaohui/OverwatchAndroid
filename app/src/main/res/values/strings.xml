@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">OverwatchAndroid</string>
+
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="toolbar_back">BackButton</string>
+    <string name="toolbar_share">ShareButton</string>
+</resources>
