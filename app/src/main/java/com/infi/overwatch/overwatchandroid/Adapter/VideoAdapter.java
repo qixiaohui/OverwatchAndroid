@@ -57,7 +57,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         holder.screenShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwitchActivity.launchActivity(fromActivity, videos.getStreams().get(position), videos.getStreams().get(position).getChannel().getDisplayName());
+                TwitchActivity.launchActivity(fromActivity, videos.getStreams().get(position));
             }
         });
     }

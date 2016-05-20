@@ -90,6 +90,7 @@ public class TwitFragment extends Fragment {
                 Log.i(TAG, new Gson().toJson(result));
                 tweets = result.data.tweets;
                 mRecycleView.setAdapter(new TwitAdapter(getActivity(), getContext(), tweets));
+                progressBar.setVisibility(View.INVISIBLE);
             }
 
             @Override
@@ -108,7 +109,6 @@ public class TwitFragment extends Fragment {
         mRecycleView.setHasFixedSize(false);
         mLayoutManager = new LinearLayoutManager(getActivity().getApplicationContext());
         mRecycleView.setLayoutManager(mLayoutManager);
-        progressBar.setVisibility(View.INVISIBLE);
         return view;
     }
 
