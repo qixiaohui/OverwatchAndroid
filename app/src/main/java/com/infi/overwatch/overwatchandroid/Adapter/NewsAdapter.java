@@ -61,8 +61,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         if(results.get(position).getIurl() != null && !results.get(position).getIurl().equals("") ){
             Picasso.with(mContext).load(results.get(position).getIurl()).into(holder.poster);
         }else{
-            holder.poster.setVisibility(View.GONE);
+            Picasso.with(mContext).load(R.drawable.default_news_bg).into(holder.poster);
         }
+
         if(!results.get(position).getAuthor().equals("no")){
             holder.author.setText(results.get(position).getAuthor());
             holder.author.setVisibility(View.VISIBLE);

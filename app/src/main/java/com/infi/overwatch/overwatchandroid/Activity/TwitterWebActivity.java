@@ -15,13 +15,12 @@ import android.widget.ProgressBar;
 
 import com.google.gson.Gson;
 import com.infi.overwatch.overwatchandroid.R;
-import com.infi.overwatch.overwatchandroid.model.table.Result;
 import com.twitter.sdk.android.core.models.Tweet;
 
 /**
  * Created by TQi on 5/19/16.
  */
-public class TwitterActivity extends AppCompatActivity {
+public class TwitterWebActivity extends AppCompatActivity {
     public static final String CONTENT_EXTRA = "CONTENT_EXTRA";
     public static final String SUBTITLE = "SUBTITLE";
 
@@ -68,7 +67,7 @@ public class TwitterActivity extends AppCompatActivity {
     }
 
     public static void launchActivity(Activity fromActivity, Tweet tweet){
-        Intent intent = new Intent(fromActivity, TwitterActivity.class);
+        Intent intent = new Intent(fromActivity, TwitterWebActivity.class);
         intent.putExtra(CONTENT_EXTRA, new Gson().toJson(tweet));
         fromActivity.startActivity(intent);
     }

@@ -2,7 +2,6 @@ package com.infi.overwatch.overwatchandroid.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.infi.overwatch.overwatchandroid.Activity.TwitterActivity;
+import com.infi.overwatch.overwatchandroid.Activity.TwitterWebActivity;
 import com.infi.overwatch.overwatchandroid.R;
 import com.squareup.picasso.Picasso;
 import com.twitter.sdk.android.core.models.Tweet;
@@ -64,7 +63,7 @@ public class TwitAdapter extends RecyclerView.Adapter<TwitAdapter.ViewHolder> {
         holder.twitCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwitterActivity.launchActivity(activity, tweet);
+                TwitterWebActivity.launchActivity(activity, tweet);
             }
         });
     }

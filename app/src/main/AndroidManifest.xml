@@ -20,10 +20,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activity.WebContentActivity" android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name=".Activity.TwitchActivity"
+        <activity android:name=".Activity.TwitchWebActivity"
             android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="landscape"/>
-        <activity android:name=".Activity.TwitterActivity" android:theme="@style/Theme.Design.NoActionBar" />
+        <activity android:name=".Activity.TwitterWebActivity" android:theme="@style/Theme.Design.NoActionBar" />
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="d9da19f40bf15ac376ed87dc2deef2168ebf7a1e" />

@@ -2,7 +2,6 @@ package com.infi.overwatch.overwatchandroid.Adapter;
 
 import android.app.Activity;
 import android.content.Context;
-import android.media.Image;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.infi.overwatch.overwatchandroid.Activity.TwitchActivity;
-import com.infi.overwatch.overwatchandroid.Activity.WebContentActivity;
+import com.infi.overwatch.overwatchandroid.Activity.TwitchWebActivity;
 import com.infi.overwatch.overwatchandroid.R;
 import com.infi.overwatch.overwatchandroid.model.Video.Videos;
 import com.squareup.picasso.Picasso;
@@ -57,7 +55,7 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         holder.screenShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwitchActivity.launchActivity(fromActivity, videos.getStreams().get(position));
+                TwitchWebActivity.launchActivity(fromActivity, videos.getStreams().get(position));
             }
         });
     }

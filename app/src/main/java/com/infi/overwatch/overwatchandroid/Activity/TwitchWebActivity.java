@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.util.DisplayMetrics;
-import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -18,12 +13,11 @@ import android.widget.ProgressBar;
 import com.google.gson.Gson;
 import com.infi.overwatch.overwatchandroid.R;
 import com.infi.overwatch.overwatchandroid.model.Video.Stream;
-import com.infi.overwatch.overwatchandroid.model.Video.Videos;
 
 /**
  * Created by TQi on 5/18/16.
  */
-public class TwitchActivity extends AppCompatActivity {
+public class TwitchWebActivity extends AppCompatActivity {
     public static final String CONTENT_EXTRA = "CONTENT_EXTRA";
     public static final String SUBTITLE = "SUBTITLE";
 
@@ -59,7 +53,7 @@ public class TwitchActivity extends AppCompatActivity {
     }
 
     public static void launchActivity(Activity fromActivity, Stream stream){
-        Intent intent = new Intent(fromActivity, TwitchActivity.class);
+        Intent intent = new Intent(fromActivity, TwitchWebActivity.class);
         intent.putExtra(CONTENT_EXTRA, new Gson().toJson(stream));
         fromActivity.startActivity(intent);
     }
