@@ -1,6 +1,5 @@
 package com.infi.overwatch.overwatchandroid.Fragment;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,7 +18,6 @@ import com.infi.overwatch.overwatchandroid.R;
 import com.infi.overwatch.overwatchandroid.model.heros.Heros;
 
 import java.util.ArrayList;
-import java.util.zip.Inflater;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -54,18 +52,19 @@ public class PhotoFragment extends Fragment {
         progressBar.setVisibility(View.VISIBLE);
         StaggeredGridLayoutManager staggeredGridLayoutManager = new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
         recyclerView.setLayoutManager(staggeredGridLayoutManager);
-        _loadheros();
+        loadheros();
         return view;
     }
 
-    private void _loadheros(){
+    private void loadheros(){
+
         Gateway gateway = RestClient.getGateway();
         gateway.getHeros().enqueue(new Callback<ArrayList<Heros>>() {
             @Override
             public void onResponse(Call<ArrayList<Heros>> call, Response<ArrayList<Heros>> response) {
                 heros = response.body();
                 progressBar.setVisibility(View.INVISIBLE);
-                _loadRows();
+                recyclerView.setAdapter(new PhotoAdapter(heros, getContext()));
             }
 
             @Override
@@ -75,8 +74,4 @@ public class PhotoFragment extends Fragment {
         });
     }
 
-    private void _loadRows(){
-        photoAdapter = new PhotoAdapter(heros, getContext());
-        recyclerView.setAdapter(photoAdapter);
-    }
 }

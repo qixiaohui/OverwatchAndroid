@@ -12,6 +12,7 @@ import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.Path;
+import retrofit2.http.Query;
 
 public interface Gateway {
 
@@ -22,7 +23,7 @@ public interface Gateway {
     Call<ArrayList<Heros>> getHeros();
 
     @GET("streams?game=overwatch")
-    Call<Videos> getVideos();
+    Call<Videos> getVideos(@Query("offset") int index);
 
     @GET("content")
     Call<List<WebContent>> getWebContent(@Header("link") String link,@Header("id") String id);

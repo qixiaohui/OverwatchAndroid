@@ -30,12 +30,10 @@ public class FullscreenActivity extends AppCompatActivity {
     private BottomBar bottomBar;
     private FragmentManager fragmentManager;
     private LinearLayout linearLayout;
-    private com.infi.overwatch.overwatchandroid.Application.Application application;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        application = new com.infi.overwatch.overwatchandroid.Application.Application();
 
         setContentView(R.layout.activity_fullscreen);
 
@@ -109,5 +107,11 @@ public class FullscreenActivity extends AppCompatActivity {
         // Necessary to restore the BottomBar's state, otherwise we would
         // lose the current tab on orientation change.
         bottomBar.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        fragmentManager = null;
     }
 }

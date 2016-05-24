@@ -24,11 +24,8 @@ import com.twitter.sdk.android.core.TwitterApiClient;
 import com.twitter.sdk.android.core.TwitterAuthConfig;
 import com.twitter.sdk.android.core.TwitterCore;
 import com.twitter.sdk.android.core.TwitterException;
-import com.twitter.sdk.android.core.TwitterSession;
 import com.twitter.sdk.android.core.models.Search;
 import com.twitter.sdk.android.core.models.Tweet;
-import com.twitter.sdk.android.core.services.SearchService;
-import com.twitter.sdk.android.core.services.StatusesService;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -69,7 +66,7 @@ public class TwitFragment extends Fragment {
             @Override
             public void success(Result<AppSession> result) {
                 AppSession guestAppSession = result.data;
-                _getTweets(guestAppSession);
+                getTweets(guestAppSession);
             }
 
             @Override
@@ -81,7 +78,8 @@ public class TwitFragment extends Fragment {
         });
     }
 
-    private void _getTweets(AppSession guestAppSession){
+    private void getTweets(AppSession guestAppSession){
+
         TwitterApiClient twitterApiClient =  TwitterCore.getInstance().getApiClient(guestAppSession);
         twitterApiClient.getSearchService().tweets("overwatch", null, "en", null, null, 50, null, null, null, true, new GuestCallback<Search>(new Callback<Search>() {
             @Override

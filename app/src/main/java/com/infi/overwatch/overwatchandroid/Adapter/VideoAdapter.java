@@ -64,4 +64,14 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     public int getItemCount() {
         return videos.getStreams().size();
     }
+
+    public Videos getVideos(){
+        return videos;
+    }
+
+    public void addMoreVideos(Videos videos, int index){
+        if(index >= this.videos.getStreams().size()){
+            this.videos.getStreams().addAll(videos.getStreams());
+        }
+    }
 }
