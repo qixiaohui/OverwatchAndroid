@@ -9,5 +9,8 @@
     <color name="white">#ffffff</color>
     <color name="titleBlk">#000000</color>
 
+    <color name="skyBlue">#216cec</color>
+
     <color name="primeColor">#ff8000</color>
+    <color name="halfTransparentBg">#592cc4f8</color>
 </resources>

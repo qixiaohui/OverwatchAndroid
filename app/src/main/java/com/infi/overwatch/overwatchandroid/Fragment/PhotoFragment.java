@@ -58,13 +58,13 @@ public class PhotoFragment extends Fragment {
 
     private void loadheros(){
 
-        Gateway gateway = RestClient.getGateway();
+        Gateway gateway = RestClient.getAwsGateway();
         gateway.getHeros().enqueue(new Callback<ArrayList<Heros>>() {
             @Override
             public void onResponse(Call<ArrayList<Heros>> call, Response<ArrayList<Heros>> response) {
                 heros = response.body();
                 progressBar.setVisibility(View.INVISIBLE);
-                recyclerView.setAdapter(new PhotoAdapter(heros, getContext()));
+                recyclerView.setAdapter(new PhotoAdapter(heros, getContext(), getActivity()));
             }
 
             @Override

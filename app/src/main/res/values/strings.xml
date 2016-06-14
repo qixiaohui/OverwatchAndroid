@@ -6,4 +6,8 @@
     <string name="toolbar_back">BackButton</string>
     <string name="toolbar_share">ShareButton</string>
     <string name="originla_link">Visit Website</string>
+    <string name="overview">Overview</string>
+    <string name="empty"></string>
+    <string name="description">Description</string>
+    <string name="abilities">Abilities</string>
 </resources>

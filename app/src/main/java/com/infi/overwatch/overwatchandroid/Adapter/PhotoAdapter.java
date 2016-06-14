@@ -1,5 +1,6 @@
 package com.infi.overwatch.overwatchandroid.Adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.infi.overwatch.overwatchandroid.Activity.HeroDetailActivity;
 import com.infi.overwatch.overwatchandroid.R;
 import com.infi.overwatch.overwatchandroid.model.heros.Heros;
 
@@ -22,10 +24,12 @@ import java.util.ArrayList;
 public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> {
     private ArrayList<Heros> heros = new ArrayList<>();
     private Context context;
+    private Activity fromActivity;
 
-    public PhotoAdapter(ArrayList<Heros> heros, Context context){
+    public PhotoAdapter(ArrayList<Heros> heros, Context context, Activity fromActivity){
         this.heros = heros;
         this.context = context;
+        this.fromActivity = fromActivity;
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -49,12 +53,18 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
+    public void onBindViewHolder(ViewHolder holder, final int position) {
         holder.heroName.setText(heros.get(position).getHeroname());
         try {
-            holder.imageView.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier(heros.get(position).getImgPath(), "drawable", context.getPackageName())));
+            holder.imageView.setImageDrawable(context.getResources().getDrawable(context.getResources().getIdentifier(heros.get(position).getImgPath().toLowerCase().replace(".png",""), "drawable", context.getPackageName())));
+            holder.imageView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    HeroDetailActivity.launchActivity(fromActivity, heros.get(position).getHeroname());
+                }
+            });
         }catch (Resources.NotFoundException e){
-            Log.e("NOT FOUND", "can't find"+heros.get(position).getImgPath());
+            Log.e("NOT FOUND", "can't find"+heros.get(position).getImgPath().toLowerCase().replace(".png",""));
         }
 
 

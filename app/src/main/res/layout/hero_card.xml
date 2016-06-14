@@ -6,12 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="8dp"
+    android:background="@drawable/hero_button_selector"
     card_view:cardCornerRadius="@dimen/cardRadius"
     card_view:cardElevation="@dimen/cardElevation">
     <ImageView
         android:id="@+id/heroPoster"
         android:layout_width="match_parent"
         android:layout_height="200dp"
+        android:duplicateParentState="true"
         android:scaleType="centerCrop" />
 
     <!-- Used for the ripple effect on touch -->

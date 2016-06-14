@@ -16,4 +16,9 @@
     <dimen name="twitCardAvatarWidth">100dp</dimen>
     <dimen name="twitTextSize">12dp</dimen>
     <dimen name="twitAuthorSize">15dp</dimen>
+
+    <dimen name="bioTextSize">16sp</dimen>
+    <dimen name="bioSmallerTextSize">12sp</dimen>
+    <dimen name="bioTextMarginHorizontal">10dp</dimen>
+    <dimen name="bioTextMarginVertical">5dp</dimen>
 </resources>
