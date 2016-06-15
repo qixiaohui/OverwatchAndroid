@@ -21,4 +21,7 @@
     <dimen name="bioSmallerTextSize">12sp</dimen>
     <dimen name="bioTextMarginHorizontal">10dp</dimen>
     <dimen name="bioTextMarginVertical">5dp</dimen>
+
+    <dimen name="dialogWidth">50dp</dimen>
+    <dimen name="dialogHeight">50dp</dimen>
 </resources>

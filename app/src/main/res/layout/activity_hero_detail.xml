@@ -26,13 +26,19 @@
                 app:popupTheme="@style/AppTheme.PopupOverlay"
                 android:background="?attr/colorPrimary" />
         </android.support.design.widget.AppBarLayout>
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
         <com.infi.overwatch.overwatchandroid.Component.HeroDetailContainerView
             android:id="@+id/detailContainer"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:paddingTop="@dimen/toolbar_margin"
             android:layout_marginTop="20dp"
-            android:back
             android:visibility="@{data == null?View.GONE:View.VISIBLE}"
             android:orientation="vertical">
             <TextView
@@ -105,9 +111,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/overviewContent"/>
+        </com.infi.overwatch.overwatchandroid.Component.HeroDetailContainerView>
             <RelativeLayout
                 android:background="@color/halfTransparentBg"
-                android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent">
@@ -135,13 +141,10 @@
                         android:background="@drawable/triangle" />
                 </RelativeLayout>
                 <com.github.aakira.expandablelayout.ExpandableRelativeLayout
-                    android:layout_height="match_parent"
+                    android:layout_height="400dp"
                     android:layout_width="match_parent"
                     android:id="@+id/description"
                     android:layout_below="@+id/descriptionButton">
-                    <ScrollView
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
                     <TextView
                         android:layout_marginLeft="@dimen/activity_horizontal_margin"
                         android:layout_marginRight="@dimen/activity_horizontal_margin"
@@ -150,11 +153,11 @@
                         android:textColor="@color/white"
                         android:id="@+id/bioDescription"
                         android:textSize="@dimen/bioSmallerTextSize" />
-                    </ScrollView>
                 </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
             </RelativeLayout>
             <RelativeLayout
                 android:background="@color/halfTransparentBg"
+                android:id="@+id/abilitiesBtn"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
                 android:layout_marginBottom="@dimen/activity_vertical_margin"
                 android:layout_height="wrap_content"
@@ -166,23 +169,10 @@
                     android:gravity="center"
                     android:padding="8dp"
                     android:text="@string/abilities"
-                    android:layout_toLeftOf="@+id/abilityButton"
                     android:textColor="@color/white"
                     android:textSize="@dimen/bioTextSize" />
-                <RelativeLayout
-                    android:id="@+id/abilityButton"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentRight="true"
-                    android:layout_alignParentTop="true"
-                    android:gravity="center">
-
-                    <View
-                        android:layout_width="12dp"
-                        android:layout_height="12dp"
-                        android:background="@drawable/triangle" />
-                </RelativeLayout>
             </RelativeLayout>
-        </com.infi.overwatch.overwatchandroid.Component.HeroDetailContainerView>
+            </LinearLayout>
+    </ScrollView>
     </android.support.design.widget.CoordinatorLayout>
 </layout>
