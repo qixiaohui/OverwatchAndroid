@@ -7,22 +7,25 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.infi.overwatch.overwatchandroid.Activity.TwitchWebActivity;
+import com.infi.overwatch.overwatchandroid.Activity.YoutubeActivity;
 import com.infi.overwatch.overwatchandroid.R;
-import com.infi.overwatch.overwatchandroid.model.Video.Videos;
+import com.infi.overwatch.overwatchandroid.model.video.Videos;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
 
 /**
  * Created by TQi on 5/18/16.
  */
 public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> {
-    private Videos videos = new Videos();
+    private ArrayList<Videos> videos = new ArrayList<>();
     private Context context;
     private Activity fromActivity;
 
-    public VideoAdapter(Videos videos, Activity activity, Context context){
+    public VideoAdapter(ArrayList<Videos> videos, Activity activity, Context context){
         this.videos = videos;
         this.context = context;
         fromActivity = activity;
@@ -32,11 +35,13 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
         public ImageView screenShot;
         public TextView title;
         public TextView player;
+        public RelativeLayout infoCard;
         public ViewHolder(View view){
             super(view);
             screenShot = (ImageView) view.findViewById(R.id.screenshot);
             title = (TextView) view.findViewById(R.id.title);
             player = (TextView) view.findViewById(R.id.player);
+            infoCard = (RelativeLayout) view.findViewById(R.id.infocard);
         }
 
     }
@@ -48,30 +53,30 @@ public class VideoAdapter extends RecyclerView.Adapter<VideoAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ViewHolder holder, final int position) {
-        Picasso.with(context).load(videos.getStreams().get(position).getPreview().getMedium()).into(holder.screenShot);
-        holder.player.setText(videos.getStreams().get(position).getChannel().getDisplayName());
-        holder.title.setText(videos.getStreams().get(position).getChannel().getStatus());
+    public void onBindViewHolder(final ViewHolder holder, final int position) {
+        Picasso.with(context).load("http://img.youtube.com/vi/"+videos.get(position).getVideoId()+"/mqdefault.jpg").into(holder.screenShot);
+        holder.title.setText(videos.get(position).getTitle());
+        holder.infoCard.setVisibility(View.GONE);
         holder.screenShot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                TwitchWebActivity.launchActivity(fromActivity, videos.getStreams().get(position));
+                YoutubeActivity.launchActivity(fromActivity, videos.get(position).getUrl());
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return videos.getStreams().size();
+        return videos.size();
     }
 
-    public Videos getVideos(){
+    public ArrayList<Videos> getVideos(){
         return videos;
     }
 
-    public void addMoreVideos(Videos videos, int index){
-        if(index >= this.videos.getStreams().size()){
-            this.videos.getStreams().addAll(videos.getStreams());
+    public void addMoreVideos(ArrayList<Videos> videos, int index){
+        if(index*12 >= this.videos.size()){
+            this.videos.addAll(videos);
         }
     }
 }

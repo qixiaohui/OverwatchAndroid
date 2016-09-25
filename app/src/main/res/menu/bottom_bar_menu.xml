@@ -15,8 +15,4 @@
         android:id="@+id/photo"
         android:icon="@drawable/ic_picture"
         android:title="Photo" />
-    <item
-        android:id="@+id/donate"
-        android:icon="@drawable/ic_support"
-        android:title="Donation" />
 </menu>

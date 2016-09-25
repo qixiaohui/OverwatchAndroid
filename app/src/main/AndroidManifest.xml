@@ -21,7 +21,7 @@
         </activity>
         <activity android:name=".Activity.WebContentActivity" android:theme="@style/Theme.Design.NoActionBar" />
         <activity android:name=".Activity.HeroDetailActivity" android:theme="@style/Theme.Design.NoActionBar" />
-        <activity android:name=".Activity.TwitchWebActivity"
+        <activity android:name=".Activity.YoutubeActivity"
             android:theme="@style/Theme.Design.NoActionBar"
             android:screenOrientation="landscape"/>
         <activity android:name=".Activity.TwitterWebActivity" android:theme="@style/Theme.Design.NoActionBar" />

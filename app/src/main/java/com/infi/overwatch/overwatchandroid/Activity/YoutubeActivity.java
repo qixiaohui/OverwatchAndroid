@@ -10,18 +10,16 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.ProgressBar;
 
-import com.google.gson.Gson;
 import com.infi.overwatch.overwatchandroid.R;
-import com.infi.overwatch.overwatchandroid.model.Video.Stream;
 
 /**
  * Created by TQi on 5/18/16.
  */
-public class TwitchWebActivity extends AppCompatActivity {
+public class YoutubeActivity extends AppCompatActivity {
     public static final String CONTENT_EXTRA = "CONTENT_EXTRA";
     public static final String SUBTITLE = "SUBTITLE";
 
-    private Stream stream;
+    private String stream;
     private WebView mWebContent;
     private ProgressBar progressBar;
 
@@ -34,7 +32,7 @@ public class TwitchWebActivity extends AppCompatActivity {
         setContentView(R.layout.activity_twitch);
         mWebContent = (WebView) findViewById(R.id.webPlayer);
         progressBar = (ProgressBar) findViewById(R.id.progressBar);
-        stream = new Gson().fromJson(getIntent().getStringExtra(CONTENT_EXTRA), Stream.class);
+        stream = getIntent().getStringExtra(CONTENT_EXTRA);
         _loadUrl();
     }
 
@@ -49,12 +47,12 @@ public class TwitchWebActivity extends AppCompatActivity {
                 progressBar.setVisibility(View.INVISIBLE);
             }
         });
-        mWebContent.loadUrl("http://player.twitch.tv/?channel=" + stream.getChannel().getName() + "&html5");
+        mWebContent.loadUrl(stream);
     }
 
-    public static void launchActivity(Activity fromActivity, Stream stream){
-        Intent intent = new Intent(fromActivity, TwitchWebActivity.class);
-        intent.putExtra(CONTENT_EXTRA, new Gson().toJson(stream));
+    public static void launchActivity(Activity fromActivity, String stream){
+        Intent intent = new Intent(fromActivity, YoutubeActivity.class);
+        intent.putExtra(CONTENT_EXTRA, stream);
         fromActivity.startActivity(intent);
     }
 }

@@ -16,7 +16,11 @@ import com.infi.overwatch.overwatchandroid.Dao.Gateway;
 import com.infi.overwatch.overwatchandroid.Dao.RestClient;
 import com.infi.overwatch.overwatchandroid.Listener.EndlessRecyclerListener;
 import com.infi.overwatch.overwatchandroid.R;
-import com.infi.overwatch.overwatchandroid.model.Video.Videos;
+import com.infi.overwatch.overwatchandroid.model.video.Data;
+import com.infi.overwatch.overwatchandroid.model.video.VideoPayload;
+import com.infi.overwatch.overwatchandroid.model.video.Videos;
+
+import java.util.ArrayList;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -31,7 +35,7 @@ public class VideoFragment extends Fragment {
     private ProgressBar progressBar;
     private RecyclerView.LayoutManager mLayoutManager;
     private int previousPage = 1;
-    private int maxSize = 0;
+    private int maxSize = 50; // default 50 as max videos
 
     public static VideoFragment newInstance(){
         VideoFragment videoFragment = new VideoFragment();
@@ -57,25 +61,37 @@ public class VideoFragment extends Fragment {
     }
 
     private void loadVideos(final int index){
-        Gateway gateway = RestClient.getTwitchGateway();
-        gateway.getVideos(index).enqueue(new Callback<Videos>() {
+        Gateway gateway = RestClient.getAwsGateway();
+        VideoPayload videoPayload = constructPayload(index);
+        gateway.getVideos(videoPayload).enqueue(new Callback<ArrayList<Videos>>() {
             @Override
-            public void onResponse(Call<Videos> call, Response<Videos> response) {
+            public void onResponse(Call<ArrayList<Videos>> call, Response<ArrayList<Videos>> response) {
                 if(index == 1) {
                     progressBar.setVisibility(View.INVISIBLE);
                     recyclerView.setAdapter(new VideoAdapter(response.body(), getActivity(), getActivity().getApplicationContext()));
-                    maxSize = response.body().getTotal();
-                }else{
+                } else {
                     ((VideoAdapter)recyclerView.getAdapter()).addMoreVideos(response.body(), index);
                     recyclerView.getAdapter().notifyDataSetChanged();
                 }
             }
 
             @Override
-            public void onFailure(Call<Videos> call, Throwable t) {
+            public void onFailure(Call<ArrayList<Videos>> call, Throwable t) {
                 Log.e("HTTP ERROE", t.toString());
             }
         });
+    }
+
+    private VideoPayload constructPayload(int index) {
+        VideoPayload videoPayload = new VideoPayload();
+        Data data = new Data();
+        data.setPageIndex(index);
+        data.setSource("youtube");
+        data.setVideoNum(12);
+        videoPayload.setData(data);
+        videoPayload.setTimeout(25000);
+
+        return videoPayload;
     }
 
     private void buildScrollListener(){
@@ -88,7 +104,7 @@ public class VideoFragment extends Fragment {
                     return;
                 }
                 if(maxSize > recyclerView.getAdapter().getItemCount()){
-                    loadVideos((current_page - 1) * 25 + 1);
+                    loadVideos(current_page);
                 }
             }
         });
