@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
@@ -54,5 +55,15 @@ public class YoutubeActivity extends AppCompatActivity {
         Intent intent = new Intent(fromActivity, YoutubeActivity.class);
         intent.putExtra(CONTENT_EXTRA, stream);
         fromActivity.startActivity(intent);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK) {
+            mWebContent.onPause();
+            finish();
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
     }
 }

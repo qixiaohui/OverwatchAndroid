@@ -65,15 +65,29 @@ public class FullscreenActivity extends AppCompatActivity {
                 }
             }
 
+            private boolean checkCurrentFragment(String Tag) {
+                // check if current fragment is visible
+                android.support.v4.app.Fragment fragment = getSupportFragmentManager().findFragmentByTag(Tag);
+                if(fragment != null && fragment.isVisible()) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
             @Override
             public void onMenuTabReSelected(int menuItemId) {
                 if(menuItemId == R.id.news){
+                    if(checkCurrentFragment(NewsFragment.TAG)) return;
                     _checkFragment(NewsFragment.class);
                 }else if(menuItemId == R.id.photo){
+                    if(checkCurrentFragment(PhotoFragment.TAG)) return;
                     _checkFragment(PhotoFragment.class);
                 }else if(menuItemId == R.id.video){
+                    if(checkCurrentFragment(VideoFragment.TAG)) return;
                     _checkFragment(VideoFragment.class);
                 }else if(menuItemId == R.id.twit){
+                    if(checkCurrentFragment(TwitFragment.TAG)) return;
                     _checkFragment(TwitFragment.class);
                 }
             }
