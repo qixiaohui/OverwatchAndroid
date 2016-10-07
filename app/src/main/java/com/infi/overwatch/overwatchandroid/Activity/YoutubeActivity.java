@@ -57,13 +57,21 @@ public class YoutubeActivity extends AppCompatActivity {
         fromActivity.startActivity(intent);
     }
 
+    /**
+     * pause player if activity goes background
+     */
     @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if(keyCode == KeyEvent.KEYCODE_BACK) {
-            mWebContent.onPause();
-            finish();
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
+    protected void onStop() {
+        super.onStop();
+        mWebContent.onPause();
+    }
+
+    /**
+     * resume web player is activity was in background
+     */
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+        mWebContent.onResume();
     }
 }
